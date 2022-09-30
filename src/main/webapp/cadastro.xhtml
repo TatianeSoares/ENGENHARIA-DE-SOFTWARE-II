@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="conteudo">
+      <h:form>
+         <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+            <p:outputLabel for="login" value="Login:"/>
+            <p:inputText id="login" value="#{cadastroController.usuario.login}"/>
+            <p:message for="login"/>
+            <p:outputLabel for="nome" value="Nome:"/>
+            <p:inputText id="nome" value="#{cadastroController.usuario.nome}"/>
+            <p:message for="nome"/>
+            <p:outputLabel for="matricula" value="Matricula:"/>
+            <p:inputText id="matricula" value="#{cadastroController.usuario.matricula}"/>
+            <p:message for="matricula"/>
+            <p:outputLabel for="senha" value="Senha:"/>
+            <p:inputText id="senha" value="#{cadastroController.usuario.senha}"/>
+            <p:message for="senha"/>
+            <p:commandButton value="Adicionar" update="growl" action="#{cadastroController.cadastrarUsuario}"/>
+            <p:growl id="growl"/>
+         </h:panelGrid>
+      </h:form>
+   </ui:define>
+</ui:composition>
