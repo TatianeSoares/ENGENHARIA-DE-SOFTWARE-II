@@ -4,9 +4,54 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/templates/default.xhtml">
-    <ui:define name="conteudo">
-        <h:form>
 
+    <ui:define name="conteudo">
+        <h:outputText value="Login"/>
+    </ui:define>
+
+    <ui:define name="conteudo">
+        <f:metadata>
+            <f:viewAction action="#{loginController.init}"/>
+        </f:metadata>
+
+        <h:form id="form" prependId="false">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="card">
+                        <p:breadCrumb>
+                            <p:menuitem outcome="/index"/>
+                            <p:menuitem value="Login" disabled="true"/>
+                        </p:breadCrumb>
+
+                        <div class="ui-fluid p-grid">
+                            <p:fieldset legend="Entrar/Login" class="p-col-6 p-md-6">
+                                <div class="ui-fluid p-grid">
+
+                                    <div class="p-col-6 p-md-1">
+                                        <p:outputLabel value="Login:"/>
+                                    </div>
+
+                                    <div class="p-col-6 p-md-2">
+                                        <p:inputText value="#{loginController.usuario.login}"  />
+                                    </div>
+
+                                    <div class="p-col-6 p-md-6"/>
+
+                                    <div class="p-col-6 p-md-1">
+                                        <p:outputLabel value="Senha:"/>
+                                    </div>
+
+                                    <div class="p-col-6 p-md-8">
+                                        <p:inputText value="#{loginController.usuario.senha}" />
+                                    </div>
+
+                                </div>
+                            </p:fieldset>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>

@@ -11,8 +11,8 @@ import java.io.Serializable;
 @Named
 @SessionScoped
 public class LoginController implements Serializable {
-    Usuario usuario;
-    Usuario usuarioBuscado;
+    private Usuario usuario;
+    private Usuario usuarioBuscado;
 
     public Usuario getUsuario() {
         return usuario;
@@ -25,7 +25,9 @@ public class LoginController implements Serializable {
     public void buscarPorLogin(){
         UsuarioDAO dao = new UsuarioDAO();
         this.usuarioBuscado = dao.buscarPorLogin(this.usuario.getLogin());
-        if(this.usuarioBuscado != null && this.usuarioBuscado.getSenha().equals(this.usuario.getSenha())){ // login existe e senha correta
+        if(this.usuarioBuscado != null && this.usuarioBuscado.getSenha()
+            .equals(this.usuario.getSenha())){
+            // login existe e senha correta
             //  redirecionar para tela de login
 
         }
