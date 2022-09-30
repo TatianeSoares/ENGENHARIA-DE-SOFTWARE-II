@@ -13,6 +13,15 @@ import java.io.Serializable;
 @ViewScoped
 public class CadastroController implements Serializable {
     private Usuario usuario;
+    private String senhaRepetida;
+
+    public String getSenhaRepetida() {
+        return senhaRepetida;
+    }
+
+    public void setSenhaRepetida(String senhaRepetida) {
+        this.senhaRepetida = senhaRepetida;
+    }
 
     public Usuario getUsuario(){
         return usuario;
@@ -25,7 +34,7 @@ public class CadastroController implements Serializable {
     public void cadastrarUsuario() throws Exception {
         UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
 
-        if(usuarioBusiness.cadastrarUsuario(this.usuario)){
+        if(usuarioBusiness.cadastrarUsuario(this.usuario, this.senhaRepetida)){
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         }
     }
