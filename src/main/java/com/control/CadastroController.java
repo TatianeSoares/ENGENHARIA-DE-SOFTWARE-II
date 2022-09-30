@@ -1,6 +1,6 @@
 package com.control;
 
-import com.business.UsuarioBusiness;
+import com.client.UsuarioClient;
 import com.exception.BusinessException;
 import com.model.Usuario;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import org.omnifaces.util.Messages;
 @ViewScoped
 public class CadastroController implements Serializable {
   @Inject private SessaoController sessaoController;
-  @Inject private UsuarioBusiness usuarioBusiness;
+  @Inject private UsuarioClient usuarioClient;
   @Getter @Setter private Usuario usuario;
   @Getter @Setter private String senhaRepetida;
 
@@ -28,12 +28,11 @@ public class CadastroController implements Serializable {
   }
 
   public void cadastrarUsuario() {
-    try{
-    usuarioBusiness.cadastrarUsuario(this.usuario, this.senhaRepetida);
-    sessaoController.login(usuario);
-    FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-    }
-    catch (BusinessException | IOException e){
+    try {
+      usuarioClient.cadastrarUsuario(this.usuario, this.senhaRepetida);
+      sessaoController.login(usuario);
+      FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+    } catch (BusinessException | IOException e) {
       Messages.addGlobalError(e.getLocalizedMessage());
     }
   }
