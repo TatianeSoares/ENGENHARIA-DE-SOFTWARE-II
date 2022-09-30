@@ -1,13 +1,13 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-<h:head>
-    Teste
-</h:head>
-<h:body>
-    <h:form>
-        <p:outputLabel value="TESTE"/>
-    </h:form>
-</h:body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="conteudo">
+        <h:form>
+            <p:outputLabel value="TESTE"/>
+            <p:commandButton value="teste"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
