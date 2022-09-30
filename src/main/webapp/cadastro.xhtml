@@ -3,27 +3,26 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/templates/default.xhtml">
-   <ui:define name="conteudo">
-      <h:form>
-         <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
-            <p:outputLabel for="nome" value="Nome:"/>
-            <p:inputText id="nome" value="#{cadastroController.usuario.nome}"/>
-            <p:message for="nome"/>
-            <p:outputLabel for="matricula" value="Chapa / Matricula:"/>
-            <p:inputText id="matricula" value="#{cadastroController.usuario.matricula}"/>
-            <p:message for="matricula"/>
-            <p:outputLabel for="login" value="E-mail (@uel.br):"/>
-            <p:inputText id="login" value="#{cadastroController.usuario.login}"/>
-            <p:message for="login"/>
-            <p:outputLabel for="senha" value="Senha:"/>
-            <p:inputText type="password" id="senha" value="#{cadastroController.usuario.senha}"/>
-            <p:message for="senha"/>
-            <p:outputLabel for="senhaRepetida" value="Repetir Senha:"/>
-            <p:inputText type="password" id="senhaRepetida" value="#{cadastroController.senhaRepetida}"/>
-            <p:message for="senhaRepetida"/>
-            <p:commandButton value="Adicionar" update="growl" action="#{cadastroController.cadastrarUsuario}"/>
-            <p:growl id="growl"/>
-         </h:panelGrid>
-      </h:form>
-   </ui:define>
+    <ui:define name="conteudo">
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
+                <p:outputLabel for="nome" value="Nome:"/>
+                <p:inputText id="nome" value="#{cadastroController.usuario.nome}"/>
+                <p:outputLabel for="matricula" value="Chapa / Matricula:"/>
+                <p:inputText id="matricula" value="#{cadastroController.usuario.matricula}"/>
+                <p:outputLabel for="login" value="E-mail (@uel.br):"/>
+                <p:inputText id="login" value="#{cadastroController.usuario.login}"/>
+                <p:outputLabel for="senha" value="Senha:"/>
+                <p:inputText type="password" id="senha"
+                             value="#{cadastroController.usuario.senha}"/>
+                <p:outputLabel for="senhaRepetida" value="Repetir Senha:"/>
+                <p:inputText type="password" id="senhaRepetida"
+                             value="#{cadastroController.senhaRepetida}" required="true"
+                             requiredMessage="A repetição de senha deve ser preenchida"/>
+                <p:commandButton value="Cadastrar" update="growl, menuSessao"
+                                 action="#{cadastroController.cadastrarUsuario}"/>
+                <p:growl id="growl"/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
 </ui:composition>
