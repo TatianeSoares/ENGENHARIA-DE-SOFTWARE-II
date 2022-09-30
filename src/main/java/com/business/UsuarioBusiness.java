@@ -1,32 +1,38 @@
 package com.business;
 
 import com.dao.UsuarioDAO;
+import com.exception.BusinessException;
 import com.model.Usuario;
+import java.io.Serializable;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+@ApplicationScoped
+public class UsuarioBusiness implements Serializable {
+  @Inject private UsuarioDAO usuarioDAO;
 
-public class UsuarioBusiness {
-    public boolean cadastrarUsuario(Usuario usuario, String senhaRepetida) {
-        UsuarioDAO dao = new UsuarioDAO();
-        Usuario usuarioExistente = dao.buscarPorLogin(usuario.getLogin());
-        if(usuarioExistente != null){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuario ja cadastrado"));
-            return false;
-        }
-        // verificar se o email tem @uel.br
-        boolean loginCorreto = usuario.getLogin().endsWith("@uel.br");
-        if(!loginCorreto){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("O email deve terminar em @uel.br"));
-            return false;
-        }
-
-        boolean senhasIguais = usuario.getSenha().equals(senhaRepetida);
-        if(!senhasIguais){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Campo de senha nao corresponde"));
-            return false;
-        }
-
-        return dao.inserir(usuario);
+  public void cadastrarUsuario(Usuario usuario, String senhaRepetida) throws BusinessException {
+    Usuario usuarioExistente = usuarioDAO.buscarPorLogin(usuario.getLogin());
+    if (usuarioExistente != null) {
+      throw new BusinessException("Usuário ja cadastrado");
     }
+    boolean loginCorreto = usuario.getLogin().endsWith("@uel.br");
+    if (!loginCorreto) {
+      throw new BusinessException("O e-mail deve terminar em @uel.br");
+    }
+    if (!usuario.getSenha().equals(senhaRepetida)) {
+      throw new BusinessException("Campos de senha diferentes");
+    }
+    usuarioDAO.inserir(usuario);
+  }
+
+  public void verificarCadastro(Usuario usuario) throws BusinessException {
+    Usuario usuarioExistente = usuarioDAO.buscarPorLogin(usuario.getLogin());
+    if (usuarioExistente == null) {
+      throw new BusinessException("Usuário não cadastrado");
+    }
+    if (usuarioExistente.getSenha().equals(usuario.getSenha())) {
+      throw new BusinessException("Senha incorreta");
+    }
+  }
 }

@@ -1,51 +1,24 @@
 package com.model;
 
-public class Usuario {
-    protected String matricula;
-    protected String nome;
-    protected String login;
-    protected String senha;
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    public Usuario(String matricula, String login, String senha, String nome) {
-        this.matricula = matricula;
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
-    }
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Usuario implements Serializable {
+  @NotEmpty(message = "A matrícula/chapa deve ser preenchida")
+  private String matricula;
 
-    public Usuario(){
+  @NotEmpty(message = "O nome deve ser preenchido")
+  private String nome;
 
-    }
+  @NotEmpty(message = "O email deve ser preenchido")
+  private String login;
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+  @NotEmpty(message = "A senha deve ser preenchida")
+  private String senha;
 }

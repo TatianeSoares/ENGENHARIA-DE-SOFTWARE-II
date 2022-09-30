@@ -8,10 +8,20 @@
 <h:head>
 </h:head>
 <h:body>
-    <p:toolbar>
+    <p:toolbar id="menuSessao">
+        <p:toolbarGroup align="left">
+            <p:commandButton value="Inicio"
+                             action="index.xhtml?faces-redirect=true"/>
+        </p:toolbarGroup>
         <p:toolbarGroup align="right">
-            <p:commandButton value="Cadastrar-se" style="margin-right: 50px"/>
-            <p:commandButton value="Entrar"/>
+            <p:commandButton value="Cadastrar-se" style="margin-right: 50px"
+                             action="cadastro.xhtml?faces-redirect=true"
+                             rendered="#{sessaoController.usuarioLogado eq null}"/>
+            <p:commandButton value="Entrar"
+                             action="login.xhtml?faces-redirect=true"
+                             rendered="#{sessaoController.usuarioLogado eq null}"/>
+            <p:commandButton value="Sair" action="#{sessaoController.logout}"
+                             rendered="#{sessaoController.usuarioLogado ne null}"/>
         </p:toolbarGroup>
     </p:toolbar>
 </h:body>
