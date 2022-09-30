@@ -17,6 +17,7 @@ import org.omnifaces.util.Messages;
 @Named
 @ViewScoped
 public class CadastroController implements Serializable {
+  @Inject private SessaoController sessaoController;
   @Inject private UsuarioBusiness usuarioBusiness;
   @Getter @Setter private Usuario usuario;
   @Getter @Setter private String senhaRepetida;
@@ -29,6 +30,7 @@ public class CadastroController implements Serializable {
   public void cadastrarUsuario() {
     try{
     usuarioBusiness.cadastrarUsuario(this.usuario, this.senhaRepetida);
+    sessaoController.login(usuario);
     FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
     catch (BusinessException | IOException e){

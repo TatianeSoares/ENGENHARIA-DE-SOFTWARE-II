@@ -5,6 +5,7 @@ import com.model.Usuario;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @Named
 @SessionScoped
 public class LoginController implements Serializable {
+    @Inject SessaoController sessaoController;
     Usuario usuario;
     Usuario usuarioBuscado;
 
@@ -38,8 +40,7 @@ public class LoginController implements Serializable {
         }
 
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-        // criar o SessionController
-
+        sessaoController.login(usuario);
     }
 
     @PostConstruct

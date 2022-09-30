@@ -19,7 +19,7 @@
                 <p:inputText type="password" id="senhaRepetida"
                              value="#{cadastroController.senhaRepetida}" required="true"
                              requiredMessage="A repetição de senha deve ser preenchida"/>
-                <p:commandButton value="Cadastrar" update="growl"
+                <p:commandButton value="Cadastrar" update="growl, menuSessao"
                                  action="#{cadastroController.cadastrarUsuario}"/>
                 <p:growl id="growl"/>
             </h:panelGrid>
