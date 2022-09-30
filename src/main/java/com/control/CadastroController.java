@@ -24,8 +24,10 @@ public class CadastroController implements Serializable {
 
     public void cadastrarUsuario() throws Exception {
         UsuarioBusiness usuarioBusiness = new UsuarioBusiness();
-        usuarioBusiness.cadastrarUsuario(this.usuario);
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+
+        if(usuarioBusiness.cadastrarUsuario(this.usuario)){
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        }
     }
 
     @PostConstruct
