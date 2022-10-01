@@ -4,25 +4,41 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="conteudo">
+        <style>
+          .myFieldset .ui-fieldset, .ui-fieldset .ui-fieldset-legend {
+            background: none;
+            border: none;
+            color: black;
+            font-size: 18px;
+            text-shadow: none;
+          }
+        </style>
         <h:form>
-            <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
-                <p:outputLabel for="nome" value="Nome:"/>
-                <p:inputText id="nome" value="#{cadastroController.usuario.nome}"/>
-                <p:outputLabel for="matricula" value="Chapa / Matricula:"/>
-                <p:inputText id="matricula" value="#{cadastroController.usuario.matricula}"/>
-                <p:outputLabel for="login" value="E-mail (@uel.br):"/>
-                <p:inputText id="login" value="#{cadastroController.usuario.login}"/>
-                <p:outputLabel for="senha" value="Senha:"/>
-                <p:inputText type="password" id="senha"
-                             value="#{cadastroController.usuario.senha}"/>
-                <p:outputLabel for="senhaRepetida" value="Repetir Senha:"/>
-                <p:inputText type="password" id="senhaRepetida"
-                             value="#{cadastroController.senhaRepetida}" required="true"
-                             requiredMessage="A repetição de senha deve ser preenchida"/>
-                <p:commandButton value="Cadastrar" update="growl, menuSessao"
-                                 action="#{cadastroController.cadastrarUsuario}"/>
-                <p:growl id="growl"/>
-            </h:panelGrid>
+            <p:fieldset legend="Cadastro" styleClass="myFieldset"
+                        style="width: fit-content;">
+                <h:panelGrid columns="2" cellpadding="5" style="margin: 0 auto;">
+                    <p:outputLabel for="nome" value="Nome:"/>
+                    <p:inputText id="nome" value="#{cadastroController.usuario.nome}"/>
+                    <p:outputLabel for="matricula" value="Chapa / Matricula:"/>
+                    <p:inputText id="matricula" value="#{cadastroController.usuario.matricula}"/>
+                    <p:outputLabel for="login" value="E-mail (@uel.br):"/>
+                    <p:inputText id="login" value="#{cadastroController.usuario.login}"/>
+                    <p:outputLabel for="senha" value="Senha:"/>
+                    <p:inputText type="password" id="senha"
+                                 value="#{cadastroController.usuario.senha}"/>
+                    <p:outputLabel for="senhaRepetida" value="Repetir Senha:"/>
+                    <p:inputText type="password" id="senhaRepetida"
+                                 value="#{cadastroController.senhaRepetida}" required="true"
+                                 requiredMessage="A repetição de senha deve ser preenchida"/>
+                </h:panelGrid>
+                <h:panelGrid columns="1" cellpadding="3"
+                             style="margin: 10px auto auto auto">
+                    <p:commandButton value="Cadastrar"
+                                     update="growl, menuSessao"
+                                     action="#{cadastroController.cadastrarUsuario}"/>
+                    <p:growl id="growl"/>
+                </h:panelGrid>
+            </p:fieldset>
         </h:form>
     </ui:define>
 </ui:composition>

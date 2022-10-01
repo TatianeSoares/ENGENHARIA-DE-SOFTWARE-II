@@ -31,7 +31,7 @@ public class UsuarioBusiness implements Serializable {
     if (usuarioExistente == null) {
       throw new BusinessException("Usuário não cadastrado");
     }
-    if (usuarioExistente.getSenha().equals(usuario.getSenha())) {
+    if (!usuarioExistente.getSenha().equals(usuario.getSenha())) {
       throw new BusinessException("Senha incorreta");
     }
   }
