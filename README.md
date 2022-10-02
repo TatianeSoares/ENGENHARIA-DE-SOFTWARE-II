@@ -9,6 +9,7 @@
 Diagrama de Gantt: 
 [planejado (grupo e individuais)](https://docs.google.com/spreadsheets/d/1A6CLTJL0-fnqsUdoamDQkQiJZC9mXZA-UKnSY96ePeo/view) 
 /
+[executado (grupo)](https://drive.google.com/file/d/16hiD7kv3UVM70SZ0S0NyECkb6pbHsk75/view)
 
 
 [Diagrama de Casos de Uso](https://drive.google.com/file/d/1CLpfCoqDh4fik50FxcbPA6C-Yayqx5QO/view)
@@ -23,14 +24,17 @@ Formulário de casos de uso:
 Login: 
 [Análise](https://drive.google.com/file/d/1MYNs8bMBqDP2eGwERZNmo5jqpZWEY7R9/view) 
 / 
+[Projeto](https://drive.google.com/file/d/18SlazIYILqt8O9VopgxroSl_ftxW2d32/view)
 
 Cadastro: 
 [Análise](https://drive.google.com/file/d/1-pEh9FJqthWnS19bsDej9_6GBTZa3TMr/view) 
 / 
+[Projeto](https://drive.google.com/file/d/1XVyCBCISTKLdgbfKZpEUVEU_0O2YDseP/view)
 
 **Diagrama de classes**: 
 [Análise](https://drive.google.com/file/d/18azz2Njpg9G-zhHC3J3Dg-TaouFKZryk/view) 
 /
+[Projeto](https://drive.google.com/file/d/1di_OPVEK7pTo_1fBAE7UKUQhHir9YJc4/view)
 
 **Classes nesse sprint**:
 
