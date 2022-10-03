@@ -1,5 +1,7 @@
 # ENGENHARIA-DE-SOFTWARE-II
 
+[Políticas para o Git](https://github.com/TatianeSoares/ENGENHARIA-DE-SOFTWARE-II/blob/main/politicas.md)
+
 **Planejamento**:
 
 [Tabela de Atividades](https://docs.google.com/document/d/1lE4ouQs-FCUVJWScQvnC_xHBdBdCTAIEeWuBqL6yTX0/view)
