@@ -38,8 +38,8 @@ Cadastro:
 /
 [Projeto](https://drive.google.com/file/d/1di_OPVEK7pTo_1fBAE7UKUQhHir9YJc4/view)
 
-**Classes de Pacotes**:
-(https://drive.google.com/file/d/1jHzzgOQqVvDkiiefk2zmurNrOfD4fIgE/view?usp=sharing)
+**Diagrama de Pacotes**:
+[Diagrama de Pacotes](https://drive.google.com/file/d/1jHzzgOQqVvDkiiefk2zmurNrOfD4fIgE/view?usp=sharing)
 
 **Classes nesse sprint**:
 
