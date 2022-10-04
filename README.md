@@ -38,6 +38,9 @@ Cadastro:
 /
 [Projeto](https://drive.google.com/file/d/1di_OPVEK7pTo_1fBAE7UKUQhHir9YJc4/view)
 
+**Classes de Pacotes**:
+(https://drive.google.com/file/d/1jHzzgOQqVvDkiiefk2zmurNrOfD4fIgE/view?usp=sharing)
+
 **Classes nesse sprint**:
 
 [control.LoginController](https://github.com/TatianeSoares/ENGENHARIA-DE-SOFTWARE-II/blob/main/src/main/java/com/control/LoginController.java)
