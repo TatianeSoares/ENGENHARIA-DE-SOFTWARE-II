@@ -14,9 +14,9 @@ public class SalaDAO {
         salas.add(sala);
     }
 
-    public void remove(Sala sala) {
+    public void remove(Sala salaExistente) {
         List<Sala> salas = BancoDeDados.getTabelaSalas();
-        salas.remove(sala);
+        salas.remove(salaExistente);
     }
 
     public Sala buscarPorIdentificador(String identificador) {
