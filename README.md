@@ -1,5 +1,7 @@
 # ENGENHARIA-DE-SOFTWARE-II
 
+[Políticas para o Git](https://github.com/TatianeSoares/ENGENHARIA-DE-SOFTWARE-II/blob/main/politicas.md)
+
 **Planejamento**:
 
 [Tabela de Atividades](https://docs.google.com/document/d/1lE4ouQs-FCUVJWScQvnC_xHBdBdCTAIEeWuBqL6yTX0/view)
@@ -35,6 +37,9 @@ Cadastro:
 [Análise](https://drive.google.com/file/d/18azz2Njpg9G-zhHC3J3Dg-TaouFKZryk/view) 
 /
 [Projeto](https://drive.google.com/file/d/1di_OPVEK7pTo_1fBAE7UKUQhHir9YJc4/view)
+
+**Diagrama de Pacotes**:
+[Diagrama de Pacotes](https://drive.google.com/file/d/1jHzzgOQqVvDkiiefk2zmurNrOfD4fIgE/view?usp=sharing)
 
 **Classes nesse sprint**:
 
