@@ -14,39 +14,133 @@
             }
         </style>
         <f:metadata>
-            <f:viewAction action="#{gerenciamentoSalasController.init}"/>
+            <f:viewAction action="#{salaController.init}"/>
         </f:metadata>
         <h:form id="form" prependId="false">
             <p:toolbar>
                 <p:toolbarGroup align="left">
-                <p:button value="Sair" immediate="true"
-                          outcome="/index"
-                          icon="fa fa-arrow-left"/>
+                <p:button value="Voltar" immediate="true"
+                          outcome="/index"/>
+                </p:toolbarGroup>
+                <p:toolbarGroup align="right">
+                    <p:commandButton value="Adicionar nova sala"
+                                     style="margin-left: 20px;"
+                                     process="@this"
+                                     onclick="PF('dialogSalas').show();"
+                                     update="datatableSalas"/>
                 </p:toolbarGroup>
             </p:toolbar>
             <p:fieldset legend="Gerenciar Salas"
                         style="margin: auto;
-                        width: 30%;"
+                        width: 70%;"
                         styleClass="myFieldset">
-<!--esta comentado para não dar erro, pois precisa chamar uma lista do backend-->
-<!--                <p:dataTable var="sala"-->
-<!--                             id="datatableSalas"-->
-<!--                             reflow="true"-->
-<!--                             rowKey="#{}"-->
-<!--                             emptyMessage="Nenhuma sala foi ecnontrada."-->
-<!--                             value="#{}">-->
 
-<!--                    <p:columnGroup type="header">-->
-<!--                        <p:column headerText="Sala" />-->
-<!--                        <p:column headerText="Tipo de sala" />-->
-<!--                        <p:column headerText="Capacidade" />-->
-<!--                        <p:column headerText="Departamento" />-->
-<!--                        <p:column headerText="Informações adicionais" />-->
-<!--                        <p:column width="80" headerText="Editar" />-->
-<!--                        <p:column width="80" headerText="Excluir?" />-->
-<!--                    </p:columnGroup>-->
+                <p:dataTable var="sala"
+                             id="datatableSalas"
+                             reflow="true"
+                             rowKey="#{sala.identificador}"
+                             emptyMessage="Nenhuma sala foi encontrada."
+                             value="#{salaController.todasSalas}">
 
-<!--                </p:dataTable>-->
+                    <p:columnGroup type="header">
+                        <p:column headerText="Sala" />
+                        <p:column headerText="Tipo de sala" />
+                        <p:column headerText="Capacidade" />
+                        <p:column headerText="Departamento" />
+                        <p:column headerText="Informações adicionais" />
+                        <p:column width="80" headerText="Editar" />
+                        <p:column width="80" headerText="Excluir?" />
+                    </p:columnGroup>
+
+                    <p:column>
+                        <p:outputLabel value="#{sala.identificador}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel value="#{sala.tipo}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel value="#{sala.capacidade}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel value="#{sala.departamento}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel value="#{sala.infoAdicional}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:dialog widgetVar="dialogSalas"
+                          style="max-width: 700px;"
+                          modal="true"
+                          responsive="true"
+                          id="dlgSala">
+                    <f:facet name="header">
+                        <h2>Adicionar nova sala</h2>
+                    </f:facet>
+
+                    <p:outputLabel value="Identificação da sala: "/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:inputText id="idSala" value="#{salaController.sala.identificador}"/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:outputLabel value="Tipo de sala: "/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:selectOneMenu id="tipoSala" value="#{salaController.sala.tipo}">
+                        <f:selectItem itemLabel="Selecione um tipo de sala" itemDisabled="true"/>
+                        <f:selectItem itemLabel="Prática" itemValue="Prática"/>
+                        <f:selectItem itemLabel="Teórica" itemValue="Teórica"/>
+                    </p:selectOneMenu>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:outputLabel value="Capacidade: "/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:inputText id="capacidade" value="#{salaController.sala.capacidade}"/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:outputLabel value="Departamento: "/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:selectOneMenu id="departamento" value="#{salaController.sala.departamento}">
+                        <f:selectItem itemLabel="Selecione um tipo de sala" itemDisabled="true"/>
+                        <f:selectItem itemLabel="Computação" itemValue="Computação"/>
+                        <f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+                        <f:selectItem itemLabel="Geografia" itemValue="Matemática"/>
+                    </p:selectOneMenu>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:outputLabel value="Informações adicionais: "/>
+
+                    <div class="p-col-12 p-md-12"/>
+
+                    <p:inputText id="info" value="#{salaController.sala.infoAdicional}"/>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Salvar"
+                                         process="@this, dlgSala"
+                                         actionListener="#{salaController.salvarSala}"
+                                         update="datatableSalas"
+                                         onclick="PF('dialogSalas').hide();"
+                                         styleClass="destaque" />
+
+                    </f:facet>
+                </p:dialog>
             </p:fieldset>
         </h:form>
     </ui:define>

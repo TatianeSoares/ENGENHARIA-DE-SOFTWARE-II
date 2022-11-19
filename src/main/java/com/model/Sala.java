@@ -1,6 +1,7 @@
 package com.model;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class Sala implements Serializable {
     @NotEmpty(message = "O tipo deve ser preenchido")
     private String tipo;
 
-    @NotEmpty(message = "A capacidade deve ser preenchida")
+    @NotNull(message = "A capacidade deve ser preenchida")
     private int capacidade;
 
     @NotEmpty(message = "O departamento deve ser preenchido")

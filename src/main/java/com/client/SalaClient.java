@@ -23,10 +23,12 @@ public class SalaClient {
   }
 
   public List<Sala> buscaSalas(){
+
     return salaDAO.buscarSalas();
   }
 
   public void atualizarSala(Sala sala) {
+
     salaDAO.atualizar(sala);
   }
 }
