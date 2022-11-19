@@ -3,6 +3,7 @@ package com.dao;
 import com.bd.BancoDeDados;
 import com.model.Sala;
 
+import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
 
@@ -16,8 +17,12 @@ public class SalaDAO {
 
     public void atualizar(Sala sala) {
         List<Sala> salas = BancoDeDados.getTabelaSalas();
-        salas.removeIf(salaLista -> salaLista.getIdentificador().equals(sala.getIdentificador()));
-        salas.add(sala);
+        Sala salaExistente = salas.stream().filter(s -> s.getIdentificador().equals(sala.getIdentificador())).collect(
+            Collectors.toList()).get(0);
+        salaExistente.setCapacidade(sala.getCapacidade());
+        salaExistente.setDepartamento(sala.getDepartamento());
+        salaExistente.setTipo(sala.getTipo());
+        salaExistente.setInfoAdicional(sala.getInfoAdicional());
     }
 
     public void remove(Sala salaExistente) {

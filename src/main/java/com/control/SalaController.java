@@ -20,6 +20,7 @@ public class SalaController implements Serializable {
   @Inject private SalaClient salaClient;
   @Getter @Setter private Sala sala;
   @Getter @Setter private List<Sala> todasSalas;
+  @Getter @Setter private boolean novaSala;
 
   @PostConstruct
   public void init(){
@@ -30,25 +31,35 @@ public class SalaController implements Serializable {
 
   public void salvarSala() {
     try{
-      salaClient.salvarSala(this.sala);
-      buscaTodasSalas();
+      if (novaSala) {
+        salaClient.salvarSala(this.sala);
+        buscaTodasSalas();
+      }
+      else {
+        salaClient.atualizarSala(this.sala);
+      }
     } catch (BusinessException e) {
       Messages.addGlobalError(e.getLocalizedMessage());
     }
-  }
-
-  public void atualizarSala() {
-
-    salaClient.atualizarSala(this.sala);
+    sala = new Sala();
   }
 
   public void buscaTodasSalas() {
-
     todasSalas = salaClient.buscaSalas();
   }
 
   public void excluirSala(String identificador) {
-
     salaClient.excluirSala(identificador);
+  }
+
+  public void escolherSala(Sala s) {
+    if (s == null) {
+      sala = new Sala();
+      novaSala = true;
+    }
+    else {
+      sala = s;
+      novaSala = false;
+    }
   }
 }

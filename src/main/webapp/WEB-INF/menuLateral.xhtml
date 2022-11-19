@@ -9,15 +9,22 @@
 </h:head>
 <h:body>
     <h:form id="lateral">
-            <p:menu style=" height: 88vh; float: left; margin-right: 50px">
-                <p:submenu label="Consultas"/>
+        <p:menu style=" height: 88vh; float: left; margin-right: 50px">
+            <p:submenu label="Consultas">
                 <p:menuitem value="Consultar salas"
                             style="color: green;"/>
                 <p:menuitem value="Consultar atividades"
                             style="color: green;"/>
                 <p:menuitem value="Consultar salas disponíveis"
                             style="color: green;"/>
-            </p:menu>
+            </p:submenu>
+            <p:submenu label="Administração Predial"
+                       rendered="#{sessaoController.usuarioLogado ne null}">
+                <p:menuitem value="Gerenciar salas"
+                            action="gerenciamentoSalas.xhtml?faces-redirect=true"
+                            style="color: green;"/>
+            </p:submenu>
+        </p:menu>
     </h:form>
 </h:body>
 </html>

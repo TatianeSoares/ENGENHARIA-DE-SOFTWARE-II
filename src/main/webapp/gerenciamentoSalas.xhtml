@@ -6,12 +6,12 @@
                 template="/WEB-INF/templates/default.xhtml">
     <ui:define name="conteudo">
         <style>
-            .myFieldset .ui-fieldset, .ui-fieldset .ui-fieldset-legend {
-                background: none;
-                border: none;
-                color: black;
-                font-size: 18px;
-            }
+          .myFieldset .ui-fieldset, .ui-fieldset .ui-fieldset-legend {
+            background: none;
+            border: none;
+            color: black;
+            font-size: 18px;
+          }
         </style>
         <f:metadata>
             <f:viewAction action="#{salaController.init}"/>
@@ -19,15 +19,15 @@
         <h:form id="form" prependId="false">
             <p:toolbar>
                 <p:toolbarGroup align="left">
-                <p:button value="Voltar" immediate="true"
-                          outcome="/index"/>
+                    <p:button value="Voltar" immediate="true"
+                              outcome="/index"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:commandButton value="Adicionar nova sala"
                                      style="margin-left: 20px;"
-                                     process="@this"
+                                     process="@this" action="#{salaController.escolherSala(null)}"
                                      onclick="PF('dialogSalas').show();"
-                                     update="datatableSalas"/>
+                                     update="datatableSalas, panelDialog"/>
                 </p:toolbarGroup>
             </p:toolbar>
             <p:fieldset legend="Gerenciar Salas"
@@ -43,13 +43,13 @@
                              value="#{salaController.todasSalas}">
 
                     <p:columnGroup type="header">
-                        <p:column headerText="Sala" />
-                        <p:column headerText="Tipo de sala" />
-                        <p:column headerText="Capacidade" />
-                        <p:column headerText="Departamento" />
-                        <p:column headerText="Informações adicionais" />
-                        <p:column width="80" headerText="Editar" />
-                        <p:column width="80" headerText="Excluir?" />
+                        <p:column headerText="Sala"/>
+                        <p:column headerText="Tipo de sala"/>
+                        <p:column headerText="Capacidade"/>
+                        <p:column headerText="Departamento"/>
+                        <p:column headerText="Informações adicionais"/>
+                        <p:column width="80" headerText="Editar"/>
+                        <p:column width="80" headerText="Excluir?"/>
                     </p:columnGroup>
 
                     <p:column>
@@ -72,6 +72,30 @@
                         <p:outputLabel value="#{sala.infoAdicional}"/>
                     </p:column>
 
+                    <p:column>
+                        <p:commandButton icon="pi pi-user-edit" process="@this"
+                                         action="#{salaController.escolherSala(sala)}"
+                                         onclick="PF('dialogSalas').show();"
+                                         update="datatableSalas, panelDialog"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="delete" icon="pi pi-times-circle"
+                                         update="datatableSalas"
+                                         action="#{salaController.excluirSala(sala.identificador)}">
+                            <p:confirm header="Exclusão" message="Deseja mesmo excluir essa sala?"
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
+                                             icon="ui-icon-check"/>
+                            <p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+                                             icon="ui-icon-close"/>
+                        </p:confirmDialog>
+
+                    </p:column>
+
                 </p:dataTable>
 
                 <p:dialog widgetVar="dialogSalas"
@@ -83,61 +107,67 @@
                         <h2>Adicionar nova sala</h2>
                     </f:facet>
 
-                    <p:outputLabel value="Identificação da sala: "/>
+                    <p:outputPanel id="panelDialog">
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:outputLabel value="Identificação da sala: "/>
 
-                    <p:inputText id="idSala" value="#{salaController.sala.identificador}"/>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:inputText id="idSala" value="#{salaController.sala.identificador}"
+                                     disabled="#{salaController.novaSala eq false}"/>
 
-                    <p:outputLabel value="Tipo de sala: "/>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:outputLabel value="Tipo de sala: "/>
 
-                    <p:selectOneMenu id="tipoSala" value="#{salaController.sala.tipo}">
-                        <f:selectItem itemLabel="Selecione um tipo de sala" itemDisabled="true"/>
-                        <f:selectItem itemLabel="Prática" itemValue="Prática"/>
-                        <f:selectItem itemLabel="Teórica" itemValue="Teórica"/>
-                    </p:selectOneMenu>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:selectOneMenu id="tipoSala" value="#{salaController.sala.tipo}">
+                            <f:selectItem itemLabel="Selecione um tipo de sala"
+                                          itemDisabled="true"/>
+                            <f:selectItem itemLabel="Prática" itemValue="Prática"/>
+                            <f:selectItem itemLabel="Teórica" itemValue="Teórica"/>
+                        </p:selectOneMenu>
 
-                    <p:outputLabel value="Capacidade: "/>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:outputLabel value="Capacidade: "/>
 
-                    <p:inputText id="capacidade" value="#{salaController.sala.capacidade}"/>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:inputText id="capacidade" value="#{salaController.sala.capacidade}"/>
 
-                    <p:outputLabel value="Departamento: "/>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:outputLabel value="Departamento: "/>
 
-                    <p:selectOneMenu id="departamento" value="#{salaController.sala.departamento}">
-                        <f:selectItem itemLabel="Selecione um tipo de sala" itemDisabled="true"/>
-                        <f:selectItem itemLabel="Computação" itemValue="Computação"/>
-                        <f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
-                        <f:selectItem itemLabel="Geografia" itemValue="Matemática"/>
-                    </p:selectOneMenu>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:selectOneMenu id="departamento"
+                                         value="#{salaController.sala.departamento}">
+                            <f:selectItem itemLabel="Selecione um tipo de sala"
+                                          itemDisabled="true"/>
+                            <f:selectItem itemLabel="Computação" itemValue="Computação"/>
+                            <f:selectItem itemLabel="Matemática" itemValue="Matemática"/>
+                            <f:selectItem itemLabel="Geografia" itemValue="Matemática"/>
+                        </p:selectOneMenu>
 
-                    <p:outputLabel value="Informações adicionais: "/>
+                        <div class="p-col-12 p-md-12"/>
 
-                    <div class="p-col-12 p-md-12"/>
+                        <p:outputLabel value="Informações adicionais: "/>
 
-                    <p:inputText id="info" value="#{salaController.sala.infoAdicional}"/>
+                        <div class="p-col-12 p-md-12"/>
 
+                        <p:inputText id="info" value="#{salaController.sala.infoAdicional}"/>
 
+                    </p:outputPanel>
                     <f:facet name="footer">
                         <p:commandButton value="Salvar"
                                          process="@this, dlgSala"
                                          actionListener="#{salaController.salvarSala}"
-                                         update="datatableSalas"
+                                         update="@form"
                                          onclick="PF('dialogSalas').hide();"
-                                         styleClass="destaque" />
+                                         styleClass="destaque"/>
 
                     </f:facet>
                 </p:dialog>
