@@ -1,6 +1,7 @@
 package com.control;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -19,7 +20,7 @@ import lombok.Setter;
 
 @Named
 @ViewScoped
-public class SalaController {
+public class SalaController implements Serializable {
   @Inject private SalaClient salaClient;
   @Getter @Setter private Sala sala;
 
