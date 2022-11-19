@@ -31,4 +31,8 @@ public class SalaDAO {
         }
         return null;
     }
+
+    public List<Sala> buscarSalas(){
+        return BancoDeDados.getTabelaSalas();
+    }
 }
