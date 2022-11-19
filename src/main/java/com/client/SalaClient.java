@@ -1,12 +1,11 @@
 package com.client;
 
+import com.dao.SalaDAO;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
 import com.business.SalaBusiness;
 import com.exception.BusinessException;
 import com.model.Sala;
-import com.dao.SalaDAO;
 import java.util.List;
 
 @ApplicationScoped
@@ -25,5 +24,9 @@ public class SalaClient {
 
   public List<Sala> buscaSalas(){
     return salaDAO.buscarSalas();
+  }
+
+  public void atualizarSala(Sala sala) {
+    salaDAO.atualizar(sala);
   }
 }

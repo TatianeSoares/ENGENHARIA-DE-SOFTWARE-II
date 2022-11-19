@@ -1,18 +1,13 @@
 package com.control;
 
-import java.io.IOException;
 import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import com.client.SalaClient;
 import com.exception.BusinessException;
 import com.model.Sala;
-
 import org.omnifaces.util.Messages;
 
 import lombok.Getter;
@@ -32,10 +27,13 @@ public class SalaController implements Serializable {
   public void salvarSala() {
     try{
       salaClient.salvarSala(this.sala);
-      FacesContext.getCurrentInstance().getExternalContext().redirect("gerenciamentoSala.xhtml");
-    } catch (BusinessException | IOException e) {
+    } catch (BusinessException e) {
       Messages.addGlobalError(e.getLocalizedMessage());
     }
+  }
+
+  public void atualizarSala() {
+      salaClient.atualizarSala(this.sala);
   }
 
   public void excluirSala(String identificador) {
