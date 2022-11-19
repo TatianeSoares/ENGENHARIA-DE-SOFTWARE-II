@@ -1,5 +1,8 @@
 package com.control;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -8,12 +11,13 @@ import com.client.SalaClient;
 import com.exception.BusinessException;
 import com.model.Sala;
 import org.omnifaces.util.Messages;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Named
 @ViewScoped
-public class SalaController {
+public class SalaController implements Serializable {
   @Inject private SalaClient salaClient;
   @Getter @Setter private Sala sala;
 

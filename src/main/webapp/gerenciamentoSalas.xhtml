@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="conteudo">
+        <style>
+            .myFieldset .ui-fieldset, .ui-fieldset .ui-fieldset-legend {
+                background: none;
+                border: none;
+                color: black;
+                font-size: 18px;
+            }
+        </style>
+        <f:metadata>
+            <f:viewAction action="#{gerenciamentoSalasController.init}"/>
+        </f:metadata>
+        <h:form id="form" prependId="false">
+            <p:toolbar>
+                <p:toolbarGroup align="left">
+                <p:button value="Sair" immediate="true"
+                          outcome="/index"
+                          icon="fa fa-arrow-left"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:fieldset legend="Gerenciar Salas"
+                        style="margin: auto;
+                        width: 30%;"
+                        styleClass="myFieldset">
+<!--esta comentado para não dar erro, pois precisa chamar uma lista do backend-->
+<!--                <p:dataTable var="sala"-->
+<!--                             id="datatableSalas"-->
+<!--                             reflow="true"-->
+<!--                             rowKey="#{}"-->
+<!--                             emptyMessage="Nenhuma sala foi ecnontrada."-->
+<!--                             value="#{}">-->
+
+<!--                    <p:columnGroup type="header">-->
+<!--                        <p:column headerText="Sala" />-->
+<!--                        <p:column headerText="Tipo de sala" />-->
+<!--                        <p:column headerText="Capacidade" />-->
+<!--                        <p:column headerText="Departamento" />-->
+<!--                        <p:column headerText="Informações adicionais" />-->
+<!--                        <p:column width="80" headerText="Editar" />-->
+<!--                        <p:column width="80" headerText="Excluir?" />-->
+<!--                    </p:columnGroup>-->
+
+<!--                </p:dataTable>-->
+            </p:fieldset>
+        </h:form>
+    </ui:define>
+</ui:composition>

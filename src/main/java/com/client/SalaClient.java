@@ -3,10 +3,10 @@ package com.client;
 import com.dao.SalaDAO;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-
 import com.business.SalaBusiness;
 import com.exception.BusinessException;
 import com.model.Sala;
+import java.util.List;
 
 @ApplicationScoped
 public class SalaClient {
@@ -19,6 +19,11 @@ public class SalaClient {
 
   public void excluirSala(String identificador) {
     salaBusiness.excluirSala(identificador);
+
+  }
+
+  public List<Sala> buscaSalas(){
+    return salaDAO.buscarSalas();
   }
 
   public void atualizarSala(Sala sala) {
