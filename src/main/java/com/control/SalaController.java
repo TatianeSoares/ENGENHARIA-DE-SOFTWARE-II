@@ -34,9 +34,11 @@ public class SalaController implements Serializable {
       if (novaSala) {
         salaClient.salvarSala(this.sala);
         buscaTodasSalas();
+        Messages.addGlobalInfo("Sala criada com sucesso!");
       }
       else {
         salaClient.atualizarSala(this.sala);
+        Messages.addGlobalInfo("Sala atualizada com sucesso!");
       }
     } catch (BusinessException e) {
       Messages.addGlobalError(e.getLocalizedMessage());
@@ -50,6 +52,8 @@ public class SalaController implements Serializable {
 
   public void excluirSala(String identificador) {
     salaClient.excluirSala(identificador);
+    buscaTodasSalas();
+    Messages.addGlobalInfo("Sala excluída com sucesso!");
   }
 
   public void escolherSala(Sala s) {

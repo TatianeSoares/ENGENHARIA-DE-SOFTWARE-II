@@ -39,7 +39,7 @@
                              id="datatableSalas"
                              reflow="true"
                              rowKey="#{sala.identificador}"
-                             emptyMessage="Nenhuma sala foi encontrada."
+                             emptyMessage="Nenhuma sala cadastrada."
                              value="#{salaController.todasSalas}">
 
                     <p:columnGroup type="header">
@@ -81,17 +81,18 @@
 
                     <p:column>
                         <p:commandButton id="delete" icon="pi pi-times-circle"
-                                         update="datatableSalas"
+                                         update="@form" process="@this" resetValues="true"
                                          action="#{salaController.excluirSala(sala.identificador)}">
                             <p:confirm header="Exclusão" message="Deseja mesmo excluir essa sala?"
                                        icon="ui-icon-alert"/>
                         </p:commandButton>
 
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Não" styleClass="ui-confirmdialog-no"
+                                             style="margin-right: 100px; margin-left: 10px"
+                                             icon="ui-icon-close"/>
                             <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes"
                                              icon="ui-icon-check"/>
-                            <p:commandButton value="Não" styleClass="ui-confirmdialog-no"
-                                             icon="ui-icon-close"/>
                         </p:confirmDialog>
 
                     </p:column>
@@ -99,17 +100,14 @@
                 </p:dataTable>
 
                 <p:dialog widgetVar="dialogSalas"
-                          style="max-width: 700px;"
+                          style="max-width: 700px;" closable="false"
                           modal="true"
                           responsive="true"
                           id="dlgSala">
-                    <f:facet name="header">
-                        <h2>Adicionar nova sala</h2>
-                    </f:facet>
 
                     <p:outputPanel id="panelDialog">
 
-                        <p:outputLabel value="Identificação da sala: "/>
+                        <p:outputLabel value="Identificação da sala: " for="idSala"/>
 
                         <div class="p-col-12 p-md-12"/>
 
@@ -118,7 +116,7 @@
 
                         <div class="p-col-12 p-md-12"/>
 
-                        <p:outputLabel value="Tipo de sala: "/>
+                        <p:outputLabel value="Tipo de sala: " for="tipoSala"/>
 
                         <div class="p-col-12 p-md-12"/>
 
@@ -131,7 +129,7 @@
 
                         <div class="p-col-12 p-md-12"/>
 
-                        <p:outputLabel value="Capacidade: "/>
+                        <p:outputLabel value="Capacidade:  *" for="capacidade"/>
 
                         <div class="p-col-12 p-md-12"/>
 
@@ -139,7 +137,7 @@
 
                         <div class="p-col-12 p-md-12"/>
 
-                        <p:outputLabel value="Departamento: "/>
+                        <p:outputLabel value="Departamento: " for="departamento"/>
 
                         <div class="p-col-12 p-md-12"/>
 
@@ -154,7 +152,7 @@
 
                         <div class="p-col-12 p-md-12"/>
 
-                        <p:outputLabel value="Informações adicionais: "/>
+                        <p:outputLabel value="Informações adicionais: " for="info"/>
 
                         <div class="p-col-12 p-md-12"/>
 
@@ -162,16 +160,18 @@
 
                     </p:outputPanel>
                     <f:facet name="footer">
-                        <p:commandButton value="Salvar"
-                                         process="@this, dlgSala"
+                        <p:commandButton value="Cancelar" resetValues="true" update="panelDialog"
+                                         onclick="PF('dialogSalas').hide();"/>
+                        <p:commandButton value="Salvar" style="margin-left: 50px"
+                                         process="@form"
                                          actionListener="#{salaController.salvarSala}"
-                                         update="@form"
-                                         onclick="PF('dialogSalas').hide();"
-                                         styleClass="destaque"/>
+                                         update="datatableSalas, panelDialog, growl"
+                                         oncomplete="if(!args.validationFailed) PF('dialogSalas').hide();"/>
 
                     </f:facet>
                 </p:dialog>
             </p:fieldset>
+            <p:growl id="growl"/>
         </h:form>
     </ui:define>
 </ui:composition>
