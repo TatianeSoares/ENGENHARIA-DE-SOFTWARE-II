@@ -44,8 +44,10 @@ Cadastro:
 [diretórios, classes e arquivos](https://drive.google.com/file/d/1tHK0hTjKaDPouIWTJfiv9SD37XAC5CW4/view?usp=share_link)
 
 **Diagrama de Componentes**:
+[conexões das classes com as páginas](https://drive.google.com/file/d/1tuoWMz3pyICcD6gVZaksiQKA_MKbxC6B/view)
 
 **Diagrama de Estados**:
+[transições entre telas do sistema](https://drive.google.com/file/d/1D1sLG0W8d8pTVkWcS4XE_kGOo6zXjjzl/view)
 
 **Classes nesse sprint**:
 
